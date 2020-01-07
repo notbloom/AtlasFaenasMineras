@@ -39,36 +39,28 @@
   <body>
 
   </body>
-
   <script type="text/javascript">
 
     proj4.defs("EPSG:32617", "+proj=utm +zone=17 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
-    const {DeckGL, LineLayer} = deck;
+    const {DeckGL, ScatterplotLayer} = deck;
 
-    function getGPSPosOrigin(d){
+    function getGPSPos(d){
       console.log(d);
-      //  var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[0]);
-      //  p[2] = 0;
-    //    return p;
-    }
-
-
-    function getGPSPosDestiny(d){
-      //  var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[1]);
+        //var p = proj4("EPSG:32617", 'WGS84', [d.properties.X, d.properties.Y]);
         //p[2] = 0;
-      //  return p;
+        //return p;
+        return 0;
     }
 
 
-    let lineLayer = new LineLayer({
-      id: 'line-layer',
+    let pointsLayer = new ScatterplotLayer({
+      id: 'points-layer',
       data: 'https://notbloom.github.io/AtlasFaenasMineras/data/Atlas_de_faenas_mineras.csv',
-      pickable: true,
-      getWidth: 2,
-      getSourcePosition: getGPSPosOrigin, //d => d.geometry.coordinates[0],//getCoord,//d => d.coordinates[0],
-      getTargetPosition: getGPSPosDestiny,// d => d.geometry.coordinates[1],
-      getColor: d => [200, 140, 0],
+      radiusScale: 10,
+      radiusMinPixels: 0.5,
+      getPosition: getGPSPos, //d =>  [d.properties.X, d.properties.Y, 0], //getGPSPos
+      getColor: [216, 254, 181] // d => (d[2] === 1 ? MALE_COLOR : FEMALE_COLOR)
     });
 
     const deckgl = new DeckGL({
@@ -80,7 +72,7 @@
       minZoom: 5,
       maxZoom: 15,
       pitch: 40.5,
-      layers: [lineLayer]
+      layers: [pointsLayer]
     });
 
   </script>
