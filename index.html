@@ -47,17 +47,17 @@
     const {DeckGL, LineLayer} = deck;
 
     function getGPSPosOrigin(d){
-    //  console.log(d);
-        var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[0]);
+      console.log(d);
+      //  var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[0]);
       //  p[2] = 0;
-        return p;
+    //    return p;
     }
 
 
     function getGPSPosDestiny(d){
-        var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[1]);
+      //  var p = proj4("EPSG:32617", 'WGS84', d.geometry.coordinates[1]);
         //p[2] = 0;
-        return p;
+      //  return p;
     }
 
 
