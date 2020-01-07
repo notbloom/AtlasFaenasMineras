@@ -49,6 +49,7 @@
     function getGPSPos(d){
       console.log(d);
         var p = proj4("EPSG:32617", 'WGS84', [d.UTM_NORTE, d.UTM_ESTE]);
+        console.log(p);
         //p[2] = 0;
         return p;
         //return 0;
