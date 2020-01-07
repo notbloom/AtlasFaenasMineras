@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>deck.gl HexagonLayer Example</title>
+    <title>Atlas Faenas Mineras</title>
 
     <script src="https://unpkg.com/deck.gl@^7.0.0/dist.min.js"></script>
     <script src="https://unpkg.com/shapefile"></script>
@@ -47,10 +47,10 @@
 
     function getGPSPos(d){
       console.log(d);
-        //var p = proj4("EPSG:32617", 'WGS84', [d.properties.X, d.properties.Y]);
+        var p = proj4("EPSG:32617", 'WGS84', [d.properties.UTM_NORTE, d.properties.UTM_ESTE]);
         //p[2] = 0;
-        //return p;
-        return 0;
+        return p;
+        //return 0;
     }
 
 
