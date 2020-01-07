@@ -85,8 +85,8 @@
 
     d3.csv('https://notbloom.github.io/AtlasFaenasMineras/data/Atlas_de_faenas_mineras.csv')
       .then(response => {
-      data = response.map(d => [Number(d.lng), Number(d.lat)]);
-    //  renderLayer();
+    //  data = response.map(d => [Number(d.lng), Number(d.lat)]);
+      renderLayer();
     });
 
   </script>
