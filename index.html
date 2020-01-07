@@ -43,6 +43,7 @@
 
     proj4.defs("EPSG:32617", "+proj=utm +zone=17 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
+    let data = null;
     const {DeckGL, ScatterplotLayer} = deck;
 
     function getGPSPos(d){
@@ -52,16 +53,6 @@
         return p;
         //return 0;
     }
-
-
-    let pointsLayer = new ScatterplotLayer({
-      id: 'points-layer',
-      data: 'https://notbloom.github.io/AtlasFaenasMineras/data/Atlas_de_faenas_mineras.csv',
-      radiusScale: 10,
-      radiusMinPixels: 0.5,
-      getPosition: [0,0],//getGPSPos, //d =>  [d.properties.X, d.properties.Y, 0], //getGPSPos
-      getColor: [216, 254, 181] // d => (d[2] === 1 ? MALE_COLOR : FEMALE_COLOR)
-    });
 
     const deckgl = new DeckGL({
       mapboxApiAccessToken: 'pk.eyJ1Ijoibm90Ymxvb20iLCJhIjoiY2pyaWVua3gzMDA4ODN5bXl0ZTU1ejgyOCJ9.e6_za1_NqG7xddmPCXxBAQ',
@@ -73,6 +64,29 @@
       maxZoom: 15,
       pitch: 40.5,
       layers: [pointsLayer]
+    });
+
+    function renderLayer () {
+
+      const pointsLayer = new ScatterplotLayer({
+        id: 'points-layer',
+        data,
+        radiusScale: 10,
+        radiusMinPixels: 0.5,
+        getPosition: [0,0],//getGPSPos, //d =>  [d.properties.X, d.properties.Y, 0], //getGPSPos
+        getColor: [216, 254, 181] // d => (d[2] === 1 ? MALE_COLOR : FEMALE_COLOR)
+      });
+
+      deckgl.setProps({
+         layers: [pointsLayer]
+      });
+    }
+
+
+    d3.csv('https://notbloom.github.io/AtlasFaenasMineras/data/Atlas_de_faenas_mineras.csv')
+      .then(response => {
+      data = response.map(d => [Number(d.lng), Number(d.lat)]);
+    //  renderLayer();
     });
 
   </script>
