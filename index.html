@@ -41,7 +41,7 @@
   </body>
   <script type="text/javascript">
 
-    proj4.defs("EPSG:32617", "+proj=utm +zone=19 +ellps=WGS84 +datum=PSAD-56 +units=m +no_defs");
+    proj4.defs("EPSG:32617", "+proj=utm +zone=19 +ellps=WGS84 +datum=PSAD56 +units=m +no_defs");
 
     let data = null;
     const {DeckGL, ScatterplotLayer} = deck;
@@ -52,7 +52,7 @@
       var n = Number(d.UTM_NORTE.replace(/,/g, ''));
       var e = Number(d.UTM_ESTE.replace(/,/g, ''));
       var p = proj4("EPSG:32617", 'WGS84', [e, n]);
-      console.log(p);
+  //    console.log(p);
         //p[2] = 0;
       return p;
         //return 0;
