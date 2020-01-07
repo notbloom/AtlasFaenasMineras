@@ -48,10 +48,12 @@
 
     function getGPSPos(d){
       console.log(d);
-        var p = proj4("EPSG:32617", 'WGS84', [d.UTM_NORTE, d.UTM_ESTE]);
-        console.log(p);
+      var n = d.UTM_NORTE.replace(/,/g, '.');
+      var e = d.UTM_ESTE.replace(/,/g, '.');
+      var p = proj4("EPSG:32617", 'WGS84', [n, e]);
+      console.log(p);
         //p[2] = 0;
-        return p;
+      return p;
         //return 0;
     }
 
