@@ -47,7 +47,7 @@
     const {DeckGL, ScatterplotLayer} = deck;
 
     function getGPSPos(d){
-      console.log(Number(d.UTM_NORTE.replace(/,/g, '.')));
+      console.log(d.UTM_NORTE.replace(/,/g, '.'));
 
       var n = Number(d.UTM_NORTE.replace(/,/g, '.'));
       var e = Number(d.UTM_ESTE.replace(/,/g, '.'));
